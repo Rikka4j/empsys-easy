@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link th:href="@{/css/dashboard.css}" rel="stylesheet">
+<body>
+<div th:replace="~{commons/commons::topbar}"></div>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!--插入样式-->
+        <div th:replace="~{commons/commons::sidebar(active = 'list.html')}"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <form th:action="@{/emp}" method="post" >
+    <div class="form-group" ><label>LastName</label>
+        <input class="form-control" placeholder="name" type="text" name="lastName">
+    </div>
+    <div class="form-group" ><label>Email</label>
+        <input class="form-control" placeholder="123456@qq.com" type="email" name="email">
+    </div>
+    <div class="form-group"><label>Gender</label><br/>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" name="gender" type="radio" value="1">
+            <label class="form-check-label">男</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" name="gender" type="radio" value="0">
+            <label class="form-check-label">女</label>
+        </div>
+    </div>
+    <div class="form-group" ><label>department</label>
+        <select class="form-control" name="department">
+            <option th:each="dept:${departments}" th:text="${dept.getDepartmentName()}" th:value="${dept.getId()}"></option>
+        </select>
+    </div>
+    <div class="form-group" >
+        <label >Birth</label>
+        <input class="form-control" placeholder="格式:2019-2-6" type="text" name="birth">
+    </div>
+    <button class="btn btn-primary" type="submit">添加</button>
+</form>
+        </main>
+    </div>
+</div>
+</body>
+</html>
